@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors"; // Import cors middleware
 import BoardRoute from "./routes/BoardRoute.js";
 import LightRoute from "./routes/LightSensorRoute.js";
 import TempuratureRoute from "./routes/TempurateSensor.js";
@@ -19,6 +20,9 @@ const connect = async () => {
 };
 
 app.use(express.json());
+
+// Use cors middleware
+app.use(cors());
 
 app.use("/api", BoardRoute);
 app.use("/api", LightRoute);
