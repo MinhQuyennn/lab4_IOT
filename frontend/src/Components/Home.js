@@ -8,11 +8,18 @@ const Home = () => {
   const [boardsData, setBoardsData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from backend
-    fetch("http://localhost:8080/api/boards")
-      .then(response => response.json())
-      .then(data => setBoardsData(data))
-      .catch(error => console.error("Error fetching boards data:", error));
+    const fetchData = () => {
+      fetch("http://localhost:8080/api/boards")
+        .then(response => response.json())
+        .then(data => setBoardsData(data))
+        .catch(error => console.error("Error fetching boards data:", error));
+    };
+
+    fetchData(); // Initial fetch
+
+    const intervalId = setInterval(fetchData, 6000); // Fetch data every 6 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on component unmount
   }, []);
 
   const getDateColor = status => {

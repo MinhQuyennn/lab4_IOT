@@ -26,17 +26,33 @@ const Control = () => {
     <div className="home-banner-container1">
       <div className="home-text-section">
         <h1 className="primary-heading1">LEDs Control Status</h1>
-        <div className="container">
+        <div className="container1">
+          <h2>Wemos 1</h2>
           <p className="primary-text1">
             Led 1<li>Status: on</li>
             <ToggleButton topic="esp8266/client1" initialStatus={false} />
           </p>
-        </div>
+        
         <div className="container">
           <p className="primary-text1">
             Led 2<li>Status: on</li>
             <ToggleButton topic="esp8266/client2" initialStatus={false} />
           </p>
+        </div>
+        </div>
+        <div className="container1">
+          <h2>Wemos 2</h2>
+          <p className="primary-text1">
+            Led 1<li>Status: on</li>
+            <ToggleButton topic="esp8266/client1" initialStatus={false} />
+          </p>
+        
+        <div className="container">
+          <p className="primary-text1">
+            Led 2<li>Status: on</li>
+            <ToggleButton topic="esp8266/client2" initialStatus={false} />
+          </p>
+        </div>
         </div>
       </div>
       <div className="home-text-section1">
