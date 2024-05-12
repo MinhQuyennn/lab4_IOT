@@ -6,8 +6,7 @@ const { Schema } = mongoose;
 const LightSensor = new Schema({
   _id: Number,
   light: { type: Number, required: true },
-  //board_id: { type: String, ref: "Board", required: true },
-  //board_name: { type: String, ref: "Board", required: true },
+  board_id: { type: Number, ref: "Board", required: true },
 });
 
 const AutoIncrement = AutoIncrementFactory(mongoose);

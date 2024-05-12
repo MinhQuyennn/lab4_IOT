@@ -7,8 +7,7 @@ const TemperatureSensor = new Schema({
   _id: Number,
   temperature: { type: Number, required: true },
   humidity: { type: Number, required: true },
-  //board_id: { type: String, ref: "Board", required: true },
-  //board_name: { type: String, ref: "Board", required: true },
+  board_id: { type: Number, ref: "Board", required: true },
 });
 
 const AutoIncrement = AutoIncrementFactory(mongoose);
