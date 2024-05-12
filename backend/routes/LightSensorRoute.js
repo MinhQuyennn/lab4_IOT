@@ -1,11 +1,10 @@
 import express from "express";
+import { AddLightSensorValue, GetLightValue, getAllDataL } from "../controller/LightSensorController.js";
+
 const router = express.Router();
-import {
-  AddLightSensorValue,
-  GetLightValue,
-} from "../controller/LightSensorController.js";
 
 router.get("/lightvalues/:board_id", GetLightValue);
 router.post("/addLightSenSorValue", AddLightSensorValue);
+router.get("/getAllDataL", getAllDataL); 
 
 export default router;

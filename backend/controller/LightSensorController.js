@@ -62,3 +62,13 @@ export const AddLightSensorValue = async (req, res, next) => {
       .json({ success: false, error: "Internal server error" });
   }
 };
+
+export const getAllDataL = async (req, res, next) => {
+  try {
+    const allData = await LightSensor.find();
+    return res.status(200).json(allData);
+  } catch (error) {
+    console.error("Error fetching all data:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};

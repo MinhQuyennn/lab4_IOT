@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { sendMessage } from "./mqttService";
+import SensorChart from "./SensorChart"; // Assuming SensorChart is the name of the chart component file
+import SensorChart1 from "./SensorChart1"; // Assuming SensorChart is the name of the chart component file
+import SensorChart2 from "./SensorChart2"; // Assuming SensorChart is the name of the chart component file
 
 function ToggleButton({ topic, initialStatus }) {
   const [isOn, setIsOn] = useState(initialStatus);
@@ -28,6 +31,8 @@ const Control = () => {
 
   useEffect(() => {
     fetchData();
+    const interval = setInterval(fetchData, 6000); // Auto-refresh every 5 seconds
+    return () => clearInterval(interval); // Clean up the interval on unmount
   }, []);
 
   const fetchData = () => {
@@ -72,7 +77,8 @@ const Control = () => {
             <ToggleButton topic={`esp8266/client2`} initialStatus={false} />
           </p>
         </div>
-        <div className="container">
+        <div className="container1">
+        <h2>Wemos 2</h2>
           <p className="primary-text1">
             Led 3{" "}
             <ToggleButton topic={`esp8266/client3`} initialStatus={false} />
@@ -85,20 +91,7 @@ const Control = () => {
           </p>
         </div>
         </div>
-        <div className="container1">
-          <h2>Wemos 2</h2>
-          <p className="primary-text1">
-            Led 1<li>Status: on</li>
-            <ToggleButton topic="esp8266/client1" initialStatus={false} />
-          </p>
         
-        <div className="container">
-          <p className="primary-text1">
-            Led 2<li>Status: on</li>
-            <ToggleButton topic="esp8266/client2" initialStatus={false} />
-          </p>
-        </div>
-        </div>
       </div>
       <div className="home-text-section1">
         <h1 className="primary-heading1">Sensor Status</h1>
@@ -108,17 +101,27 @@ const Control = () => {
             {temperature !== null ? temperature : "Loading..."}
           </p>
         </div>
+        <div className="container2">
+              <SensorChart />
+        </div>
         <div className="container">
           <p className="primary-text1">
             Humidity Room: {humidity !== null ? humidity : "Loading..."}
           </p>
+        </div>
+        <div className="container2">
+              <SensorChart1 />
         </div>
         <div className="container">
           <p className="primary-text1">
             Light Room: {light !== null ? light : "Loading..."}
           </p>
         </div>
+        <div className="container2">
+              <SensorChart2 />
+        </div>
       </div>
+      
     </div>
   );
 };

@@ -30,6 +30,8 @@ export const getHumidityTemperature = async (req, res, next) => {
   }
 };
 
+
+
 export const AddTempurateSensorValue = async (req, res, next) => {
   try {
     const { temperature, humidity, board_id } = req.body;
@@ -55,5 +57,15 @@ export const AddTempurateSensorValue = async (req, res, next) => {
     return res
       .status(500)
       .json({ success: false, error: "Internal server error" });
+  }
+};
+
+export const getAllDataT = async (req, res, next) => {
+  try {
+    const allData = await TemperatureSensor.find();
+    return res.status(200).json(allData);
+  } catch (error) {
+    console.error("Error fetching all data:", error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
